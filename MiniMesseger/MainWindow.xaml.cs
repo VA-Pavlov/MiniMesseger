@@ -37,9 +37,10 @@ namespace MiniMesseger
             if (reader.Read())
             {
                 User user = new User((int)reader[0], reader[1].ToString(), reader[2].ToString());
+                reader.Close();
                 Correspondence secondWindow = new Correspondence(user);
                 secondWindow.Show();
-                this.Close();
+                                this.Close();
             }
             else
             {

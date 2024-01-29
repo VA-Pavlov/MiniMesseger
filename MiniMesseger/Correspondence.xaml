@@ -13,20 +13,18 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="UserNameBlock" Text="Имя пользователя" FontSize="20" Background="LightGoldenrodYellow" Padding="10,2"/>
-        <StackPanel Grid.Row="1"/>
-
-
+        <StackPanel Grid.Row="1" Name="MessagList"/>
         <Grid Grid.Row="2" Background="LightGoldenrodYellow">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button MaxHeight="40" MaxWidth="40" Background="LightSeaGreen">
+            <Button MaxHeight="40" MaxWidth="40" Background="LightSeaGreen" Click="Refresh_Button_Click">
                 <Image  Source="/Refresh_icon.png" Stretch="Fill"/>
             </Button>
-            <TextBox Grid.Column="1" FontSize="25" Name="TextMessagBox"/>
-            <Button Grid.Column="2" Content="Отправить" FontSize="20"/>
+            <TextBox Grid.Column="1" FontSize="25" Name="TextMessageBox"/>
+            <Button Grid.Column="2" Content="Отправить" FontSize="20" Click="Send_Message_Click"/>
         </Grid>
     </Grid>
 </Window>

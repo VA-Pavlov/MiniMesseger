@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +20,38 @@ namespace MiniMesseger
     /// </summary>
     public partial class Correspondence : Window
     {
+        SqlCommand sqlCommand;
         User user;
         public Correspondence(User user)
         {
             InitializeComponent();
             this.user = user;
+            UserNameBlock.Text = user.last_name + " " + user.first_name;
+            UpdateCorrespondence();
+        }
+        private void Refresh_Button_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateCorrespondence();
+        }
+
+        private void UpdateCorrespondence()
+        {
+            string query = "SELECT USERS.FIRST_NAME, INPUT_USER_ID, MESSEG_TEXT FROM MESSAG JOIN USERS ON USERS.ID = MESSAG.OUT_USER_ID ORDER BY DATATIME;";
+            sqlCommand = new SqlCommand(query,MainWindow.conn);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                TextBlock textBlock = new TextBlock();
+                textBlock.Text = reader[0] + "\n" + reader[2];
+                if ((int)reader[1] != user.id) textBlock.HorizontalAlignment = HorizontalAlignment.Right;
+                MessagList.Children.Add(textBlock);
+            }
+            reader.Close();
+        }
+
+        private void Send_Message_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

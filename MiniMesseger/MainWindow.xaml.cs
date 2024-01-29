@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,17 @@ namespace MiniMesseger
     /// </summary>
     public partial class MainWindow : Window
     {
+        SqlConnection conn;
         public MainWindow()
         {
             InitializeComponent();
+            
+            conn = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog = users; Integrated Security=SSPI;");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

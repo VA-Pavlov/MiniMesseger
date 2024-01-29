@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MiniMesseger"
         mc:Ignorable="d"
-        Title="Correspondence" Height="450" Width="800">
+        Title="Correspondence" Height="550" Width="500">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="UserNameBlock" Text="Имя пользователя" FontSize="20" Background="LightGoldenrodYellow" Padding="10,2"/>
+        <StackPanel Grid.Row="1"/>
+
+
+        <Grid Grid.Row="2" Background="LightGoldenrodYellow">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button MaxHeight="40" MaxWidth="40" Background="LightSeaGreen">
+                <Image  Source="/Refresh_icon.png" Stretch="Fill"/>
+            </Button>
+            <TextBox Grid.Column="1" FontSize="25" Name="TextMessagBox"/>
+            <Button Grid.Column="2" Content="Отправить" FontSize="20"/>
+        </Grid>
     </Grid>
 </Window>

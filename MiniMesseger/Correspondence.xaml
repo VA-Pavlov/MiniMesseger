@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="UserNameBlock" Text="Имя пользователя" FontSize="20" Background="LightGoldenrodYellow" Padding="10,2"/>
-        <StackPanel Grid.Row="1" Name="MessagList"/>
+        <StackPanel Grid.Row="1" Name="MessagList" />
         <Grid Grid.Row="2" Background="LightGoldenrodYellow">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

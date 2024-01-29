@@ -36,14 +36,16 @@ namespace MiniMesseger
 
         private void UpdateCorrespondence()
         {
+            MessagList.Children.Clear();
             string query = "SELECT USERS.FIRST_NAME, INPUT_USER_ID, MESSEG_TEXT FROM MESSAG JOIN USERS ON USERS.ID = MESSAG.OUT_USER_ID ORDER BY DATATIME;";
             sqlCommand = new SqlCommand(query,MainWindow.conn);
             SqlDataReader reader = sqlCommand.ExecuteReader();
             while (reader.Read())
             {
                 TextBlock textBlock = new TextBlock();
-                textBlock.Text = reader[0] + "\n" + reader[2];
+                textBlock.Text = reader[0] + "\t\n" + reader[2];
                 if ((int)reader[1] != user.id) textBlock.HorizontalAlignment = HorizontalAlignment.Right;
+                textBlock.FontSize = 25;
                 MessagList.Children.Add(textBlock);
             }
             reader.Close();
@@ -52,6 +54,10 @@ namespace MiniMesseger
         private void Send_Message_Click(object sender, RoutedEventArgs e)
         {
 
+            string query = $"INSERT INTO MESSAG VALUES ('{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}',{(user.id == 1 ? 2:1)}, {user.id}, '{TextMessageBox.Text}')";
+            sqlCommand = new SqlCommand(query, MainWindow.conn);
+            sqlCommand.ExecuteNonQuery();
+            UpdateCorrespondence();
         }
     }
 }

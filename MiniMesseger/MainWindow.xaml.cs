@@ -21,12 +21,15 @@ namespace MiniMesseger
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static SqlConnection conn;
+        public static SqlConnection conn = null;
         public MainWindow()
         {
             InitializeComponent();
-            conn = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog = MYMESSEGER; Integrated Security=SSPI;");
-            conn.Open();
+            if(conn == null)
+            {
+                conn = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog = MYMESSEGER; Integrated Security=SSPI;");
+                conn.Open();
+            }
             LogInButton.IsEnabled = true;
         }
 

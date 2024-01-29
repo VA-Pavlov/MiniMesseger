@@ -105,5 +105,8 @@
   <ItemGroup>
     <Resource Include="Refresh_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="exit-icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -43,11 +43,17 @@ namespace MiniMesseger
             while (reader.Read())
             {
                 TextBlock textBlock = new TextBlock();
-                textBlock.Text = reader[0] + "\t\n" + reader[2];
+                textBlock.Text = reader[0] + "\t";
+                if ((int)reader[1] != user.id) textBlock.HorizontalAlignment = HorizontalAlignment.Right;
+                textBlock.FontSize = 20;
+                MessagList.Children.Add(textBlock);
+                textBlock = new TextBlock();
+                textBlock.Text = reader[2].ToString();
                 if ((int)reader[1] != user.id) textBlock.HorizontalAlignment = HorizontalAlignment.Right;
                 textBlock.FontSize = 25;
                 MessagList.Children.Add(textBlock);
             }
+            Scrol.ScrollToEnd();
             reader.Close();
         }
 
@@ -57,7 +63,15 @@ namespace MiniMesseger
             string query = $"INSERT INTO MESSAG VALUES ('{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}',{(user.id == 1 ? 2:1)}, {user.id}, '{TextMessageBox.Text}')";
             sqlCommand = new SqlCommand(query, MainWindow.conn);
             sqlCommand.ExecuteNonQuery();
+            TextMessageBox.Text = "";
             UpdateCorrespondence();
+        }
+
+        private void Exit_From_User_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
         }
     }
 }

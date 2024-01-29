@@ -12,8 +12,20 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="UserNameBlock" Text="Имя пользователя" FontSize="20" Background="LightGoldenrodYellow" Padding="10,2"/>
-        <StackPanel Grid.Row="1" Name="MessagList" />
+        <Grid Background="LightGoldenrodYellow" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="UserNameBlock" VerticalAlignment="Center" Text="Имя пользователя" FontSize="20" Padding="10,2"/>
+            <Button Grid.Column="1" Click="Exit_From_User_Button_Click">
+                <Image Source="/exit-icon.png" Stretch="Fill"/>
+            </Button>
+        </Grid>
+        <ScrollViewer Grid.Row="1" Name="Scrol">
+            <StackPanel  Name="MessagList"/>
+        </ScrollViewer>
+        
         <Grid Grid.Row="2" Background="LightGoldenrodYellow">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

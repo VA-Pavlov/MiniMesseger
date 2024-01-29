@@ -11,7 +11,7 @@
         <TextBox FontSize="25" Name="LoginBox"/>
         <TextBlock Text="Введите пароль" FontSize="25"/>
         <PasswordBox FontSize="25" Name="PasswordBox"/>
-        <Button Content="Войти" FontSize="25" Margin="20" Click="Button_Click"/>
-        <TextBlock FontSize="15"/>
+        <Button Content="Войти" FontSize="25" Margin="20" Click="LogIn_Click" IsEnabled="False" Name="LogInButton"/>
+        <TextBlock x:Name="ExeptionBlock" FontSize="15"/>
     </StackPanel>
 </Window>

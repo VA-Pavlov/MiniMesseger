@@ -21,17 +21,30 @@ namespace MiniMesseger
     /// </summary>
     public partial class MainWindow : Window
     {
-        SqlConnection conn;
+        public static SqlConnection conn;
         public MainWindow()
         {
             InitializeComponent();
-            
-            conn = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog = users; Integrated Security=SSPI;");
+            conn = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog = MYMESSEGER; Integrated Security=SSPI;");
+            conn.Open();
+            LogInButton.IsEnabled = true;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void LogIn_Click(object sender, RoutedEventArgs e)
         {
-
+            SqlCommand sqlCommand = new SqlCommand($"SELECT * FROM USERS WHERE USER_LIGIN = '{LoginBox.Text}' and USER_PASSWORD = '{PasswordBox.Password}';",conn);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            if (reader.Read())
+            {
+                User user = new User((int)reader[0], reader[1].ToString(), reader[2].ToString());
+                Correspondence secondWindow = new Correspondence(user);
+                secondWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                ExeptionBlock.Text = "Неверный логин или пароль";
+            }
         }
     }
 }
